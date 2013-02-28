@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  http_basic_authenticate_with :name => "admin", :password => "123", :except => [:index, :show]
+  http_basic_authenticate_with :name => "admin", :password => "abc", :except => [:index, :show]
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.sort { |a,b| a.name.downcase <=> b.name.downcase}
 
     respond_to do |format|
       format.html # index.html.erb
